@@ -185,6 +185,14 @@
             font-size: 0.98rem;
         }
 
+        .criterio {
+            margin: 12px 0 0;
+            color: rgba(42, 36, 51, 0.72);
+            font-size: 0.92rem;
+            line-height: 1.35;
+            max-width: 860px;
+        }
+
         .seccion-contenido {
             display: grid;
             grid-template-columns: minmax(0, 1fr) 260px;
@@ -242,7 +250,7 @@
             margin: 10px 0 18px;
         }
 
-        .btn-sortear, .btn-deshacer {
+        .btn-sortear, .btn-deshacer, .btn-reiniciar {
             padding: 16px 28px;
             font-size: 1.05rem;
             cursor: pointer;
@@ -275,11 +283,26 @@
             box-shadow: 0 18px 30px rgba(122, 90, 166, 0.28);
         }
 
-        .btn-sortear:disabled, .btn-deshacer:disabled {
+        .btn-reiniciar {
+            background: linear-gradient(135deg, var(--celeste), #2f7fb4);
+        }
+
+        .btn-reiniciar:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 18px 30px rgba(87, 169, 222, 0.28);
+        }
+
+        .btn-sortear:disabled, .btn-deshacer:disabled, .btn-reiniciar:disabled {
             opacity: 0.45;
             cursor: not-allowed;
             transform: none;
             box-shadow: none;
+        }
+
+        .acciones-finales {
+            display: flex;
+            justify-content: center;
+            margin: 18px 0 0;
         }
 
         .mensaje-seccion {
@@ -387,7 +410,42 @@
 
             .pool-panel { position: static; }
 
-            .btn-sortear, .btn-deshacer { width: 100%; }
+            .btn-sortear, .btn-deshacer, .btn-reiniciar { width: 100%; }
+        }
+
+        @media print {
+            body {
+                background: #fff;
+                padding: 0;
+                color: #000;
+            }
+
+            body::before,
+            body::after,
+            .brand-badge,
+            .pool-panel,
+            .btn-sortear,
+            .btn-deshacer,
+            .btn-reiniciar,
+            .acciones-finales {
+                display: none !important;
+            }
+
+            .seccion,
+            .brand-header {
+                box-shadow: none;
+                background: #fff;
+            }
+
+            .seccion-contenido,
+            .grid-container {
+                display: block;
+            }
+
+            .grupo {
+                break-inside: avoid;
+                margin-bottom: 14px;
+            }
         }
     </style>
 
@@ -398,8 +456,8 @@
         <section class="brand-header">
             <div>
                 <div class="marca-mini">Olimpiadas Vanguardia</div>
-                <h1>Sorteos Olimpiadas Vanguardia</h1>
-                <p class="subtitulo">Estética inspirada en el manual de marca: violeta institucional, dorado ceremonial y celeste para destacar cada competencia.</p>
+                <h1>Sorteos Olimpiadas Vanguardia 2026 </h1>
+                <p class="subtitulo">Seccion Adalides - Region Centro</p>
             </div>
             <div class="brand-badge">
                 <span>Especial</span>
@@ -409,12 +467,14 @@
 
         <section class="seccion">
             <div class="seccion-titulo">
-                <h2>Sorteo principal</h2>
+                <h2>Sorteo Voley</h2>
                 <p>Equipos de vóley</p>
             </div>
+            <p class="criterio">Criterio: no se pueden ubicar dos equipos del mismo Ruca dentro del mismo grupo. Si coincide, el programa lo pasa automáticamente al siguiente grupo disponible.</p>
             <div class="seccion-contenido">
                 <div>
                     <div class="acciones">
+                        <button class="btn-reiniciar" onclick="reiniciarSorteo('principal')">Empezar sorteo de nuevo</button>
                         <button id="btn-sortear-principal" class="btn-sortear" onclick="sortearUno('principal')">Sortear siguiente equipo</button>
                         <button id="btn-deshacer-principal" class="btn-deshacer" onclick="deshacerUltimo('principal')">Deshacer último equipo</button>
                     </div>
@@ -439,9 +499,11 @@
                 <h2>Sorteo quemados</h2>
                 <p>Segundo tablero independiente</p>
             </div>
+            <p class="criterio">Criterio: no se pueden ubicar dos equipos del mismo Ruca dentro del mismo grupo. Si coincide, el programa lo pasa automáticamente al siguiente grupo disponible.</p>
             <div class="seccion-contenido">
                 <div>
                     <div class="acciones">
+                        <button class="btn-reiniciar" onclick="reiniciarSorteo('quemados')">Empezar sorteo de nuevo</button>
                         <button id="btn-sortear-quemados" class="btn-sortear" onclick="sortearUno('quemados')">Sortear siguiente equipo</button>
                         <button id="btn-deshacer-quemados" class="btn-deshacer" onclick="deshacerUltimo('quemados')">Deshacer último equipo</button>
                     </div>
@@ -464,11 +526,12 @@
         <section class="seccion">
             <div class="seccion-titulo">
                 <h2>Carrera 100 metros</h2>
-                <p>9 equipos B, zonas 5 y 4</p>
+                <p>9 rucas, zonas 5 y 4</p>
             </div>
             <div class="seccion-contenido">
                 <div>
                     <div class="acciones">
+                        <button class="btn-reiniciar" onclick="reiniciarSorteo('carrera100')">Empezar sorteo de nuevo</button>
                         <button id="btn-sortear-100" class="btn-sortear" onclick="sortearUno('carrera100')">Sortear siguiente equipo</button>
                         <button id="btn-deshacer-100" class="btn-deshacer" onclick="deshacerUltimo('carrera100')">Deshacer último equipo</button>
                     </div>
@@ -489,11 +552,12 @@
         <section class="seccion">
             <div class="seccion-titulo">
                 <h2>Carrera 400 metros</h2>
-                <p>9 equipos B, zonas 5 y 4</p>
+                <p>9 rucas, zonas 5 y 4</p>
             </div>
             <div class="seccion-contenido">
                 <div>
                     <div class="acciones">
+                        <button class="btn-reiniciar" onclick="reiniciarSorteo('carrera400')">Empezar sorteo de nuevo</button>
                         <button id="btn-sortear-400" class="btn-sortear" onclick="sortearUno('carrera400')">Sortear siguiente equipo</button>
                         <button id="btn-deshacer-400" class="btn-deshacer" onclick="deshacerUltimo('carrera400')">Deshacer último equipo</button>
                     </div>
@@ -510,6 +574,10 @@
                 </aside>
             </div>
         </section>
+
+        <div class="acciones-finales">
+            <button class="btn-reiniciar" onclick="window.print()">Guardar como PDF</button>
+        </div>
     </div>
 
     <script>
@@ -519,9 +587,9 @@
                 { nombre: "CHAPELCO A", ruca: "CHAPELCO" }, { nombre: "CARAHUE A", ruca: "CARAHUE" },
                 { nombre: "MAVUL A", ruca: "MAVUL" }, { nombre: "LLAHUE", ruca: "LLAHUE" },
                 { nombre: "CHAMPAQUI", ruca: "CHAMPAQUI" }, { nombre: "MALEN", ruca: "MALEN" },
-                { nombre: "CHOROY", ruca: "CHOROY" }, { nombre: "CHAPELCO B", ruca: "CHAPELCO" },
-                { nombre: "CARAHUE B", ruca: "CARAHUE" }, { nombre: "LIHUE", ruca: "LIHUE" },
-                { nombre: "CURA B", ruca: "CURA" }, { nombre: "MAVUL B", ruca: "MAVUL" }
+                { nombre: "CHOROY", ruca: "CHOROY" }, { nombre: "CHAPELCO", ruca: "CHAPELCO" },
+                { nombre: "CARAHUE", ruca: "CARAHUE" }, { nombre: "LIHUE", ruca: "LIHUE" },
+                { nombre: "CURA", ruca: "CURA" }, { nombre: "MAVUL", ruca: "MAVUL" }
             ].sort(() => Math.random() - 0.5);
         }
 
@@ -541,15 +609,15 @@
 
         function crearEquiposB400() {
             return [
-                { nombre: "IVYRAY B", ruca: "IVYRAY" },
-                { nombre: "CURA B", ruca: "CURA" },
-                { nombre: "CHAPELCO B", ruca: "CHAPELCO" },
-                { nombre: "CARAHUE B", ruca: "CARAHUE" },
-                { nombre: "MAVUL B", ruca: "MAVUL" },
-                { nombre: "LLAHUE B", ruca: "LLAHUE" },
-                { nombre: "CHAMPAQUI B", ruca: "CHAMPAQUI" },
-                { nombre: "MALEN B", ruca: "MALEN" },
-                { nombre: "CHOROY B", ruca: "CHOROY" }
+                { nombre: "IVYRAY", ruca: "IVYRAY" },
+                { nombre: "CURA", ruca: "CURA" },
+                { nombre: "CHAPELCO", ruca: "CHAPELCO" },
+                { nombre: "CARAHUE", ruca: "CARAHUE" },
+                { nombre: "MAVUL", ruca: "MAVUL" },
+                { nombre: "LLAHUE", ruca: "LLAHUE" },
+                { nombre: "CHAMPAQUI", ruca: "CHAMPAQUI" },
+                { nombre: "MALEN", ruca: "MALEN" },
+                { nombre: "CHOROY", ruca: "CHOROY" }
             ].sort(() => Math.random() - 0.5);
         }
 
@@ -566,6 +634,7 @@
                 mensajeId: 'mensaje-principal',
                 btnSortearId: 'btn-sortear-principal',
                 btnDeshacerId: 'btn-deshacer-principal',
+                icono: '🏐',
                 poolListId: 'pool-principal',
                 poolVacioTexto: 'No quedan equipos'
             },
@@ -615,6 +684,41 @@
             }
         };
 
+        const configuracionesSorteo = {
+            principal: {
+                crearPool: crearEquipos,
+                grupos: [
+                    { id: 'g-A-principal', max: 4 },
+                    { id: 'g-B-principal', max: 4 },
+                    { id: 'g-C-principal', max: 3 },
+                    { id: 'g-D-principal', max: 3 }
+                ]
+            },
+            quemados: {
+                crearPool: crearEquipos,
+                grupos: [
+                    { id: 'g-A-quemados', max: 4 },
+                    { id: 'g-B-quemados', max: 4 },
+                    { id: 'g-C-quemados', max: 3 },
+                    { id: 'g-D-quemados', max: 3 }
+                ]
+            },
+            carrera100: {
+                crearPool: crearEquiposB100,
+                grupos: [
+                    { id: 'g-Z1-100', max: 5 },
+                    { id: 'g-Z2-100', max: 4 }
+                ]
+            },
+            carrera400: {
+                crearPool: crearEquiposB400,
+                grupos: [
+                    { id: 'g-Z1-400', max: 5 },
+                    { id: 'g-Z2-400', max: 4 }
+                ]
+            }
+        };
+
         function renderPool(nombreSorteo) {
             const sorteo = sorteos[nombreSorteo];
             const lista = document.getElementById(sorteo.poolListId);
@@ -642,6 +746,22 @@
             document.getElementById(sorteo.btnSortearId).disabled = sorteo.pool.length === 0;
             document.getElementById(sorteo.btnDeshacerId).disabled = sorteo.historial.length === 0;
             renderPool(nombreSorteo);
+        }
+
+        function reiniciarSorteo(nombreSorteo) {
+            const sorteo = sorteos[nombreSorteo];
+            const configuracion = configuracionesSorteo[nombreSorteo];
+
+            sorteo.pool = configuracion.crearPool();
+            sorteo.grupos = configuracion.grupos.map(grupo => ({ id: grupo.id, max: grupo.max, ocupantes: [] }));
+            sorteo.historial = [];
+
+            sorteo.grupos.forEach(grupo => {
+                const ul = document.getElementById(grupo.id);
+                ul.innerHTML = "";
+            });
+
+            actualizarControles(nombreSorteo);
         }
 
         function sortearUno(nombreSorteo) {
@@ -702,6 +822,7 @@
         actualizarControles('quemados');
         actualizarControles('carrera100');
         actualizarControles('carrera400');
+
     </script>
 </body>
 </html>

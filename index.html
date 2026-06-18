@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        :root {
+            --violeta: #7a5aa6;
+            --violeta-oscuro: #5f4388;
+            --dorado: #d8b23d;
+            --celeste: #57a9de;
+            --texto: #2a2433;
+            --fondo: #f6f3ef;
+            --borde: rgba(122, 90, 166, 0.28);
+            --sombra: 0 22px 50px rgba(89, 70, 120, 0.12);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Trebuchet MS', 'Segoe UI', sans-serif;
+            color: var(--texto);
+            background:
+                radial-gradient(circle at 20% 20%, rgba(122, 90, 166, 0.09) 0 18%, transparent 19%),
+                radial-gradient(circle at 80% 10%, rgba(216, 178, 61, 0.08) 0 12%, transparent 13%),
+                radial-gradient(circle at 10% 80%, rgba(87, 169, 222, 0.07) 0 14%, transparent 15%),
+                linear-gradient(135deg, rgba(255, 255, 255, 0.82), rgba(235, 232, 228, 0.94)),
+                repeating-linear-gradient(45deg, rgba(122, 90, 166, 0.03) 0 2px, transparent 2px 10px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 28px 18px 40px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before,
+        body::after {
+            content: "";
+            position: fixed;
+            inset: auto;
+            pointer-events: none;
+            opacity: 0.45;
+        }
+
+        body::before {
+            left: -40px;
+            top: 24px;
+            width: 110px;
+            height: 85%;
+            background-image: radial-gradient(circle at 14px 14px, rgba(87, 169, 222, 0.85) 0 2px, transparent 3px),
+                radial-gradient(circle at 38px 38px, rgba(122, 90, 166, 0.75) 0 2px, transparent 3px),
+                radial-gradient(circle at 62px 62px, rgba(216, 178, 61, 0.75) 0 2px, transparent 3px);
+            background-size: 78px 78px;
+            background-repeat: repeat-y;
+            transform: rotate(0deg);
+        }
+
+        body::after {
+            right: 10px;
+            bottom: 16px;
+            width: 220px;
+            height: 220px;
+            border: 2px solid rgba(122, 90, 166, 0.22);
+            border-radius: 28px;
+            background:
+                linear-gradient(135deg, transparent 0 22%, rgba(122, 90, 166, 0.06) 22% 24%, transparent 24% 48%, rgba(216, 178, 61, 0.06) 48% 50%, transparent 50% 100%),
+                linear-gradient(45deg, transparent 0 24%, rgba(87, 169, 222, 0.05) 24% 26%, transparent 26% 100%);
+            opacity: 0.55;
+        }
+
+        .page-shell {
+            width: 100%;
+            max-width: 1080px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .brand-header {
+            display: grid;
+            grid-template-columns: 1.2fr auto;
+            gap: 16px;
+            align-items: end;
+            margin-bottom: 22px;
+            padding: 18px 22px;
+            border: 2px solid rgba(122, 90, 166, 0.18);
+            border-radius: 26px;
+            background: rgba(255, 255, 255, 0.56);
+            backdrop-filter: blur(6px);
+            box-shadow: var(--sombra);
+        }
+
+        .marca-mini {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--dorado);
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            margin-bottom: 8px;
+        }
+
+        .marca-mini::before {
+            content: "";
+            width: 42px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--dorado), var(--violeta));
+            border-radius: 999px;
+        }
+
+        h1 {
+            margin: 0;
+            color: var(--violeta);
+            font-size: clamp(2rem, 4vw, 3.3rem);
+            line-height: 0.95;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .subtitulo {
+            margin: 10px 0 0;
+            max-width: 760px;
+            font-size: 1rem;
+            color: rgba(42, 36, 51, 0.84);
+        }
+
+        .brand-badge {
+            justify-self: end;
+            padding: 12px 16px;
+            border: 2px solid rgba(216, 178, 61, 0.32);
+            border-radius: 18px;
+            color: var(--violeta-oscuro);
+            background: linear-gradient(180deg, rgba(255,255,255,0.84), rgba(244, 239, 228, 0.9));
+            text-align: right;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            box-shadow: 0 12px 30px rgba(122, 90, 166, 0.08);
+        }
+
+        .brand-badge span {
+            display: block;
+            font-size: 0.78rem;
+            color: var(--dorado);
+            letter-spacing: 0.16em;
+            margin-bottom: 4px;
+        }
+
+        .seccion {
+            margin-bottom: 22px;
+            padding: 18px 18px 20px;
+            border: 2px solid rgba(122, 90, 166, 0.16);
+            border-radius: 28px;
+            background: rgba(255, 255, 255, 0.5);
+            box-shadow: var(--sombra);
+        }
+
+        .seccion:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .seccion-titulo {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .seccion-titulo h2 {
+            margin: 0;
+            font-size: clamp(1.45rem, 2.8vw, 2rem);
+            color: var(--violeta);
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+        }
+
+        .seccion-titulo p {
+            margin: 0;
+            color: rgba(42, 36, 51, 0.75);
+            font-size: 0.98rem;
+        }
+
+        .acciones {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 10px 0 18px;
+        }
+
+        #btn-sortear, #btn-deshacer {
+            padding: 16px 28px;
+            font-size: 1.05rem;
+            cursor: pointer;
+            color: #fff;
+            border: none;
+            border-radius: 999px;
+            transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease, opacity 0.22s ease;
+            box-shadow: 0 16px 26px rgba(95, 67, 136, 0.18);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        #btn-sortear {
+            background: linear-gradient(135deg, var(--dorado), #c99d20);
+            color: #3a2f18;
+        }
+
+        #btn-sortear:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 18px 30px rgba(216, 178, 61, 0.28);
+        }
+
+        #btn-deshacer {
+            background: linear-gradient(135deg, var(--violeta), var(--violeta-oscuro));
+        }
+
+        #btn-deshacer:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 18px 30px rgba(122, 90, 166, 0.28);
+        }
+
+        #btn-sortear:disabled, #btn-deshacer:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        #mensaje {
+            width: fit-content;
+            margin: 0 auto 22px;
+            padding: 10px 16px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.68);
+            border: 1px solid rgba(122, 90, 166, 0.18);
+            font-size: 1.1rem;
+            color: var(--violeta-oscuro);
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            box-shadow: 0 12px 20px rgba(122, 90, 166, 0.08);
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+            width: 100%;
+        }
+
+        .grid-container + .acciones {
+            margin-top: 18px;
+        }
+
+        .grupo {
+            position: relative;
+            background: rgba(255, 255, 255, 0.62);
+            padding: 22px 20px 18px;
+            border-radius: 24px;
+            border: 1px solid var(--borde);
+            box-shadow: var(--sombra);
+            overflow: hidden;
+        }
+
+        .grupo::before {
+            content: "";
+            position: absolute;
+            top: -28px;
+            right: -28px;
+            width: 120px;
+            height: 120px;
+            border: 2px solid rgba(122, 90, 166, 0.18);
+            border-radius: 30px;
+            transform: rotate(45deg);
+            opacity: 0.7;
+        }
+
+        .grupo::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 7px;
+            background: linear-gradient(90deg, var(--celeste), var(--violeta), var(--dorado));
+        }
+
+        h2 {
+            margin: 6px 0 14px;
+            text-align: center;
+            color: var(--violeta);
+            font-size: 1.45rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 1.05rem;
+        }
+
+        li {
+            padding: 10px 12px;
+            margin-bottom: 10px;
+            border-radius: 14px;
+            background: linear-gradient(90deg, rgba(87, 169, 222, 0.08), rgba(255, 255, 255, 0.72));
+            border: 1px solid rgba(87, 169, 222, 0.16);
+            animation: fadeIn 0.45s ease;
+        }
+
+        li:last-child { margin-bottom: 0; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+
+        @media (max-width: 760px) {
+            body { padding: 16px 12px 28px; }
+
+            .seccion { padding: 14px 12px 16px; }
+
+            .brand-header {
+                grid-template-columns: 1fr;
+                text-align: left;
+            }
+
+            .brand-badge { justify-self: start; text-align: left; }
+
+            .grid-container { grid-template-columns: 1fr; }
+
+            #btn-sortear, #btn-deshacer { width: 100%; }
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="page-shell">
+        <section class="brand-header">
+            <div>
+                <div class="marca-mini">Olimpiadas Vanguardia</div>
+                <h1>Sorteo Olimpiadas de Voley</h1>
+                <p class="subtitulo">Estética inspirada en el manual de marca: violeta institucional, dorado ceremonial y celeste para destacar las disciplinas.</p>
+            </div>
+            <div class="brand-badge">
+                <span>Especial</span>
+                Manual visual
+            </div>
+        </section>
+
+        <section class="seccion">
+            <div class="seccion-titulo">
+                <h2>Sorteo principal</h2>
+                <p>Equipos de vóley</p>
+            </div>
+            <div class="acciones">
+                <button id="btn-sortear-principal" onclick="sortearUno('principal')">Sortear siguiente equipo</button>
+                <button id="btn-deshacer-principal" onclick="deshacerUltimo('principal')">Deshacer último equipo</button>
+            </div>
+            <div id="mensaje-principal" class="mensaje-seccion">Equipos restantes: 14</div>
+
+            <div class="grid-container">
+                <div class="grupo"><h2>Grupo A (4)</h2><ul id="g-A-principal"></ul></div>
+                <div class="grupo"><h2>Grupo B (4)</h2><ul id="g-B-principal"></ul></div>
+                <div class="grupo"><h2>Grupo C (3)</h2><ul id="g-C-principal"></ul></div>
+                <div class="grupo"><h2>Grupo D (3)</h2><ul id="g-D-principal"></ul></div>
+            </div>
+        </section>
+
+        <section class="seccion">
+            <div class="seccion-titulo">
+                <h2>Sorteo quemados</h2>
+                <p>Segundo tablero independiente</p>
+            </div>
+            <div class="acciones">
+                <button id="btn-sortear-quemados" onclick="sortearUno('quemados')">Sortear siguiente equipo</button>
+                <button id="btn-deshacer-quemados" onclick="deshacerUltimo('quemados')">Deshacer último equipo</button>
+            </div>
+            <div id="mensaje-quemados" class="mensaje-seccion">Equipos restantes: 14</div>
+
+            <div class="grid-container">
+                <div class="grupo"><h2>Grupo A (4)</h2><ul id="g-A-quemados"></ul></div>
+                <div class="grupo"><h2>Grupo B (4)</h2><ul id="g-B-quemados"></ul></div>
+                <div class="grupo"><h2>Grupo C (3)</h2><ul id="g-C-quemados"></ul></div>
+                <div class="grupo"><h2>Grupo D (3)</h2><ul id="g-D-quemados"></ul></div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        function crearEquipos() {
+            return [
+                { nombre: "IVYRAY", ruca: "IVYRAY" }, { nombre: "CURA A", ruca: "CURA" },
+                { nombre: "CHAPELCO A", ruca: "CHAPELCO" }, { nombre: "CARAHUE A", ruca: "CARAHUE" },
+                { nombre: "MAVUL A", ruca: "MAVUL" }, { nombre: "LLAHUE", ruca: "LLAHUE" },
+                { nombre: "CHAMPAQUI", ruca: "CHAMPAQUI" }, { nombre: "MALEN", ruca: "MALEN" },
+                { nombre: "CHOROY", ruca: "CHOROY" }, { nombre: "CHAPELCO B", ruca: "CHAPELCO" },
+                { nombre: "CARAHUE B", ruca: "CARAHUE" }, { nombre: "LIHUE", ruca: "LIHUE" },
+                { nombre: "CURA B", ruca: "CURA" }, { nombre: "MAVUL B", ruca: "MAVUL" }
+            ].sort(() => Math.random() - 0.5);
+        }
+
+        const sorteos = {
+            principal: {
+                pool: crearEquipos(),
+                grupos: [
+                    { id: 'g-A-principal', max: 4, ocupantes: [] },
+                    { id: 'g-B-principal', max: 4, ocupantes: [] },
+                    { id: 'g-C-principal', max: 3, ocupantes: [] },
+                    { id: 'g-D-principal', max: 3, ocupantes: [] }
+                ],
+                historial: [],
+                mensajeId: 'mensaje-principal',
+                btnSortearId: 'btn-sortear-principal',
+                btnDeshacerId: 'btn-deshacer-principal'
+            },
+            quemados: {
+                pool: crearEquipos(),
+                grupos: [
+                    { id: 'g-A-quemados', max: 4, ocupantes: [] },
+                    { id: 'g-B-quemados', max: 4, ocupantes: [] },
+                    { id: 'g-C-quemados', max: 3, ocupantes: [] },
+                    { id: 'g-D-quemados', max: 3, ocupantes: [] }
+                ],
+                historial: [],
+                mensajeId: 'mensaje-quemados',
+                btnSortearId: 'btn-sortear-quemados',
+                btnDeshacerId: 'btn-deshacer-quemados'
+            }
+        };
+
+        function actualizarControles(nombreSorteo) {
+            const sorteo = sorteos[nombreSorteo];
+            document.getElementById(sorteo.mensajeId).textContent = "Equipos restantes: " + sorteo.pool.length;
+            document.getElementById(sorteo.btnSortearId).disabled = sorteo.pool.length === 0;
+            document.getElementById(sorteo.btnDeshacerId).disabled = sorteo.historial.length === 0;
+        }
+
+        function sortearUno(nombreSorteo) {
+            const sorteo = sorteos[nombreSorteo];
+
+            if (sorteo.pool.length === 0) {
+                actualizarControles(nombreSorteo);
+                return;
+            }
+
+            const equipo = sorteo.pool[0];
+            const gruposDisponibles = sorteo.grupos.filter(g =>
+                g.ocupantes.length < g.max &&
+                !g.ocupantes.some(o => o.ruca === equipo.ruca)
+            );
+
+            if (gruposDisponibles.length === 0) {
+                alert("Error: No se pudo colocar a " + equipo.nombre + " sin repetir Ruca. ¡Reintentando el sorteo!");
+                location.reload();
+                return;
+            }
+
+            const grupo = gruposDisponibles[Math.floor(Math.random() * gruposDisponibles.length)];
+            const ul = document.getElementById(grupo.id);
+            const li = document.createElement("li");
+            li.textContent = "🏐 " + equipo.nombre;
+
+            grupo.ocupantes.push(equipo);
+            ul.appendChild(li);
+            sorteo.historial.push({ equipo, grupo, li });
+            sorteo.pool.shift();
+
+            actualizarControles(nombreSorteo);
+        }
+
+        function deshacerUltimo(nombreSorteo) {
+            const sorteo = sorteos[nombreSorteo];
+
+            if (sorteo.historial.length === 0) {
+                actualizarControles(nombreSorteo);
+                return;
+            }
+
+            const ultimo = sorteo.historial.pop();
+            const indice = ultimo.grupo.ocupantes.lastIndexOf(ultimo.equipo);
+
+            if (indice !== -1) {
+                ultimo.grupo.ocupantes.splice(indice, 1);
+            }
+
+            ultimo.li.remove();
+            sorteo.pool.unshift(ultimo.equipo);
+
+            actualizarControles(nombreSorteo);
+        }
+
+        actualizarControles('principal');
+        actualizarControles('quemados');
+    </script>
+</body>
+</html>

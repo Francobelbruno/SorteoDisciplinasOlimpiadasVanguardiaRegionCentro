@@ -2,31 +2,41 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --violeta: #7a5aa6;
-            --violeta-oscuro: #5f4388;
-            --dorado: #d8b23d;
-            --celeste: #57a9de;
-            --texto: #2a2433;
-            --fondo: #f6f3ef;
-            --borde: rgba(122, 90, 166, 0.28);
-            --sombra: 0 22px 50px rgba(89, 70, 120, 0.12);
+            --fondo: #f4f6fb;
+            --fondo-profundo: #e9edf5;
+            --tarjeta: rgba(255, 255, 255, 0.84);
+            --tarjeta-solida: #ffffff;
+            --borde: rgba(15, 23, 42, 0.08);
+            --texto: #132238;
+            --muted: #5f6b7a;
+            --primario: #1f3a5f;
+            --primario-2: #315d8d;
+            --acento: #c9a227;
+            --acento-2: #f0d77a;
+            --sombra: 0 18px 45px rgba(15, 23, 42, 0.12);
+            --sombra-suave: 0 10px 26px rgba(15, 23, 42, 0.08);
         }
 
-        * { box-sizing: border-box; }
+        * {
+            box-sizing: border-box;
+        }
 
         body {
             margin: 0;
             min-height: 100vh;
-            font-family: 'Trebuchet MS', 'Segoe UI', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             color: var(--texto);
             background:
-                radial-gradient(circle at 20% 20%, rgba(122, 90, 166, 0.09) 0 18%, transparent 19%),
-                radial-gradient(circle at 80% 10%, rgba(216, 178, 61, 0.08) 0 12%, transparent 13%),
-                radial-gradient(circle at 10% 80%, rgba(87, 169, 222, 0.07) 0 14%, transparent 15%),
-                linear-gradient(135deg, rgba(255, 255, 255, 0.82), rgba(235, 232, 228, 0.94)),
-                repeating-linear-gradient(45deg, rgba(122, 90, 166, 0.03) 0 2px, transparent 2px 10px);
+                radial-gradient(circle at 15% 15%, rgba(49, 93, 141, 0.12) 0 16%, transparent 17%),
+                radial-gradient(circle at 85% 12%, rgba(201, 162, 39, 0.11) 0 12%, transparent 13%),
+                radial-gradient(circle at 10% 85%, rgba(31, 58, 95, 0.08) 0 15%, transparent 16%),
+                linear-gradient(180deg, #fbfcfe 0%, var(--fondo) 100%);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -41,33 +51,28 @@
             position: fixed;
             inset: auto;
             pointer-events: none;
-            opacity: 0.45;
+            opacity: 0.5;
         }
 
         body::before {
-            left: -40px;
-            top: 24px;
-            width: 110px;
-            height: 85%;
-            background-image: radial-gradient(circle at 14px 14px, rgba(87, 169, 222, 0.85) 0 2px, transparent 3px),
-                radial-gradient(circle at 38px 38px, rgba(122, 90, 166, 0.75) 0 2px, transparent 3px),
-                radial-gradient(circle at 62px 62px, rgba(216, 178, 61, 0.75) 0 2px, transparent 3px);
-            background-size: 78px 78px;
-            background-repeat: repeat-y;
-            transform: rotate(0deg);
+            left: -60px;
+            top: 40px;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(49, 93, 141, 0.12) 0 45%, transparent 46%);
+            filter: blur(4px);
         }
 
         body::after {
-            right: 10px;
-            bottom: 16px;
-            width: 220px;
-            height: 220px;
-            border: 2px solid rgba(122, 90, 166, 0.22);
-            border-radius: 28px;
-            background:
-                linear-gradient(135deg, transparent 0 22%, rgba(122, 90, 166, 0.06) 22% 24%, transparent 24% 48%, rgba(216, 178, 61, 0.06) 48% 50%, transparent 50% 100%),
-                linear-gradient(45deg, transparent 0 24%, rgba(87, 169, 222, 0.05) 24% 26%, transparent 26% 100%);
-            opacity: 0.55;
+            right: -30px;
+            bottom: 14px;
+            width: 240px;
+            height: 240px;
+            border: 1px solid rgba(15, 23, 42, 0.08);
+            border-radius: 36px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.08));
+            transform: rotate(12deg);
         }
 
         .page-shell {
@@ -83,10 +88,10 @@
             gap: 16px;
             align-items: end;
             margin-bottom: 22px;
-            padding: 18px 22px;
-            border: 2px solid rgba(122, 90, 166, 0.18);
-            border-radius: 26px;
-            background: rgba(255, 255, 255, 0.56);
+            padding: 24px 24px 22px;
+            border: 1px solid var(--borde);
+            border-radius: 28px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.78));
             backdrop-filter: blur(6px);
             box-shadow: var(--sombra);
         }
@@ -95,28 +100,28 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            color: var(--dorado);
+            color: var(--primario-2);
             font-weight: 700;
-            letter-spacing: 0.14em;
+            letter-spacing: 0.16em;
             text-transform: uppercase;
-            font-size: 0.8rem;
+            font-size: 0.76rem;
             margin-bottom: 8px;
         }
 
         .marca-mini::before {
             content: "";
-            width: 42px;
+            width: 44px;
             height: 2px;
-            background: linear-gradient(90deg, var(--dorado), var(--violeta));
+            background: linear-gradient(90deg, var(--acento), var(--primario-2));
             border-radius: 999px;
         }
 
         h1 {
             margin: 0;
-            color: var(--violeta);
+            color: var(--primario);
             font-size: clamp(2rem, 4vw, 3.3rem);
-            line-height: 0.95;
-            letter-spacing: 0.04em;
+            line-height: 0.96;
+            letter-spacing: -0.04em;
             text-transform: uppercase;
         }
 
@@ -124,37 +129,37 @@
             margin: 10px 0 0;
             max-width: 760px;
             font-size: 1rem;
-            color: rgba(42, 36, 51, 0.84);
+            color: var(--muted);
         }
 
         .brand-badge {
             justify-self: end;
-            padding: 12px 16px;
-            border: 2px solid rgba(216, 178, 61, 0.32);
+            padding: 14px 16px;
+            border: 1px solid rgba(31, 58, 95, 0.12);
             border-radius: 18px;
-            color: var(--violeta-oscuro);
-            background: linear-gradient(180deg, rgba(255,255,255,0.84), rgba(244, 239, 228, 0.9));
+            color: var(--primario);
+            background: linear-gradient(180deg, #ffffff, #f6f8fc);
             text-align: right;
             font-weight: 700;
             letter-spacing: 0.08em;
             text-transform: uppercase;
-            box-shadow: 0 12px 30px rgba(122, 90, 166, 0.08);
+            box-shadow: var(--sombra-suave);
         }
 
         .brand-badge span {
             display: block;
             font-size: 0.78rem;
-            color: var(--dorado);
-            letter-spacing: 0.16em;
+            color: var(--acento);
+            letter-spacing: 0.18em;
             margin-bottom: 4px;
         }
 
         .seccion {
             margin-bottom: 22px;
-            padding: 18px 18px 20px;
-            border: 2px solid rgba(122, 90, 166, 0.16);
+            padding: 20px 20px 22px;
+            border: 1px solid var(--borde);
             border-radius: 28px;
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.72);
             box-shadow: var(--sombra);
         }
 
@@ -174,20 +179,20 @@
         .seccion-titulo h2 {
             margin: 0;
             font-size: clamp(1.45rem, 2.8vw, 2rem);
-            color: var(--violeta);
+            color: var(--primario);
             text-transform: uppercase;
-            letter-spacing: 0.07em;
+            letter-spacing: 0.04em;
         }
 
         .seccion-titulo p {
             margin: 0;
-            color: rgba(42, 36, 51, 0.75);
+            color: var(--muted);
             font-size: 0.98rem;
         }
 
         .criterio {
             margin: 12px 0 0;
-            color: rgba(42, 36, 51, 0.72);
+            color: var(--muted);
             font-size: 0.92rem;
             line-height: 1.35;
             max-width: 860px;
@@ -201,18 +206,18 @@
         }
 
         .pool-panel {
-            background: rgba(255, 255, 255, 0.7);
-            border: 1px solid rgba(122, 90, 166, 0.18);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(248, 250, 255, 0.92));
+            border: 1px solid var(--borde);
             border-radius: 24px;
             padding: 16px 14px 14px;
-            box-shadow: 0 12px 26px rgba(122, 90, 166, 0.08);
+            box-shadow: var(--sombra-suave);
             position: sticky;
             top: 16px;
         }
 
         .pool-panel h3 {
             margin: 0 0 10px;
-            color: var(--violeta-oscuro);
+            color: var(--primario);
             text-transform: uppercase;
             letter-spacing: 0.08em;
             font-size: 0.95rem;
@@ -230,15 +235,15 @@
 
         .pool-lista li {
             margin: 0;
-            padding: 9px 10px;
+            padding: 10px 12px;
             border-radius: 12px;
-            background: linear-gradient(90deg, rgba(216, 178, 61, 0.12), rgba(255, 255, 255, 0.95));
-            border: 1px solid rgba(216, 178, 61, 0.16);
+            background: linear-gradient(90deg, rgba(49, 93, 141, 0.08), rgba(255, 255, 255, 0.96));
+            border: 1px solid rgba(49, 93, 141, 0.10);
             animation: fadeIn 0.35s ease;
         }
 
         .pool-vacio {
-            color: rgba(42, 36, 51, 0.58);
+            color: var(--muted);
             font-style: italic;
         }
 
@@ -251,45 +256,46 @@
         }
 
         .btn-sortear, .btn-deshacer, .btn-reiniciar {
-            padding: 16px 28px;
-            font-size: 1.05rem;
+            padding: 14px 22px;
+            font-size: 0.95rem;
             cursor: pointer;
             color: #fff;
             border: none;
             border-radius: 999px;
-            transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease, opacity 0.22s ease;
-            box-shadow: 0 16px 26px rgba(95, 67, 136, 0.18);
-            letter-spacing: 0.04em;
+            transition: transform 0.22s ease, box-shadow 0.22s ease, opacity 0.22s ease, filter 0.22s ease;
+            box-shadow: 0 12px 24px rgba(15, 23, 42, 0.14);
+            letter-spacing: 0.06em;
             text-transform: uppercase;
             font-weight: 700;
         }
 
         .btn-sortear {
-            background: linear-gradient(135deg, var(--dorado), #c99d20);
-            color: #3a2f18;
+            background: linear-gradient(135deg, var(--acento), #b38d1c);
+            color: #251f10;
         }
 
         .btn-sortear:hover {
             transform: translateY(-2px);
-            box-shadow: 0 18px 30px rgba(216, 178, 61, 0.28);
+            box-shadow: 0 16px 28px rgba(201, 162, 39, 0.26);
+            filter: saturate(1.04);
         }
 
         .btn-deshacer {
-            background: linear-gradient(135deg, var(--violeta), var(--violeta-oscuro));
+            background: linear-gradient(135deg, var(--primario-2), var(--primario));
         }
 
         .btn-deshacer:hover {
             transform: translateY(-2px);
-            box-shadow: 0 18px 30px rgba(122, 90, 166, 0.28);
+            box-shadow: 0 16px 28px rgba(31, 58, 95, 0.24);
         }
 
         .btn-reiniciar {
-            background: linear-gradient(135deg, var(--celeste), #2f7fb4);
+            background: linear-gradient(135deg, #597591, #35506d);
         }
 
         .btn-reiniciar:hover {
             transform: translateY(-2px);
-            box-shadow: 0 18px 30px rgba(87, 169, 222, 0.28);
+            box-shadow: 0 16px 28px rgba(53, 80, 109, 0.24);
         }
 
         .btn-sortear:disabled, .btn-deshacer:disabled, .btn-reiniciar:disabled {
@@ -310,13 +316,13 @@
             margin: 0 auto 22px;
             padding: 10px 16px;
             border-radius: 999px;
-            background: rgba(255, 255, 255, 0.68);
-            border: 1px solid rgba(122, 90, 166, 0.18);
-            font-size: 1.1rem;
-            color: var(--violeta-oscuro);
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid var(--borde);
+            font-size: 1rem;
+            color: var(--primario);
             font-weight: 700;
             letter-spacing: 0.03em;
-            box-shadow: 0 12px 20px rgba(122, 90, 166, 0.08);
+            box-shadow: var(--sombra-suave);
         }
 
         .grid-container {
@@ -332,25 +338,25 @@
 
         .grupo {
             position: relative;
-            background: rgba(255, 255, 255, 0.62);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 250, 255, 0.92));
             padding: 22px 20px 18px;
             border-radius: 24px;
             border: 1px solid var(--borde);
-            box-shadow: var(--sombra);
+            box-shadow: var(--sombra-suave);
             overflow: hidden;
         }
 
         .grupo::before {
             content: "";
             position: absolute;
-            top: -28px;
-            right: -28px;
+            top: -30px;
+            right: -30px;
             width: 120px;
             height: 120px;
-            border: 2px solid rgba(122, 90, 166, 0.18);
-            border-radius: 30px;
-            transform: rotate(45deg);
-            opacity: 0.7;
+            border: 1px solid rgba(31, 58, 95, 0.12);
+            border-radius: 28px;
+            transform: rotate(38deg);
+            opacity: 0.65;
         }
 
         .grupo::after {
@@ -359,58 +365,85 @@
             left: 0;
             top: 0;
             width: 100%;
-            height: 7px;
-            background: linear-gradient(90deg, var(--celeste), var(--violeta), var(--dorado));
+            height: 6px;
+            background: linear-gradient(90deg, var(--primario-2), var(--primario), var(--acento));
         }
 
-        h2 {
-            margin: 6px 0 14px;
+        .grupo h2 {
+            margin: 8px 0 14px;
             text-align: center;
-            color: var(--violeta);
-            font-size: 1.45rem;
+            color: var(--primario);
+            font-size: 1.25rem;
             text-transform: uppercase;
-            letter-spacing: 0.06em;
+            letter-spacing: 0.04em;
         }
 
         ul {
             list-style: none;
             padding: 0;
             margin: 0;
-            font-size: 1.05rem;
+            font-size: 1rem;
         }
 
         li {
             padding: 10px 12px;
             margin-bottom: 10px;
             border-radius: 14px;
-            background: linear-gradient(90deg, rgba(87, 169, 222, 0.08), rgba(255, 255, 255, 0.72));
-            border: 1px solid rgba(87, 169, 222, 0.16);
+            background: linear-gradient(90deg, rgba(49, 93, 141, 0.08), rgba(255, 255, 255, 0.88));
+            border: 1px solid rgba(49, 93, 141, 0.10);
             animation: fadeIn 0.45s ease;
         }
 
-        li:last-child { margin-bottom: 0; }
+        li:last-child {
+            margin-bottom: 0;
+        }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
         @media (max-width: 760px) {
-            body { padding: 16px 12px 28px; }
+            body {
+                padding: 16px 12px 28px;
+            }
 
-            .seccion { padding: 14px 12px 16px; }
+            .seccion {
+                padding: 14px 12px 16px;
+            }
 
             .brand-header {
                 grid-template-columns: 1fr;
                 text-align: left;
             }
 
-            .brand-badge { justify-self: start; text-align: left; }
+            .brand-badge {
+                justify-self: start;
+                text-align: left;
+            }
 
-            .grid-container { grid-template-columns: 1fr; }
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
 
-            .seccion-contenido { grid-template-columns: 1fr; }
+            .seccion-contenido {
+                grid-template-columns: 1fr;
+            }
 
-            .pool-panel { position: static; }
+            .pool-panel {
+                position: static;
+            }
 
-            .btn-sortear, .btn-deshacer, .btn-reiniciar { width: 100%; }
+            .btn-sortear, .btn-deshacer, .btn-reiniciar {
+                width: 100%;
+            }
         }
 
         @media print {
@@ -468,9 +501,9 @@
         <section class="seccion">
             <div class="seccion-titulo">
                 <h2>Sorteo Voley</h2>
-                <p>Equipos de vóley</p>
+                <p>15 equipos, 3 zonas de 4 y 1 zona de 3</p>
             </div>
-            <p class="criterio">Criterio: no se pueden ubicar dos equipos del mismo Ruca dentro del mismo grupo. Si coincide, el programa lo pasa automáticamente al siguiente grupo disponible.</p>
+            <p class="criterio">Criterio: clasifican los 2 mejores de cada zona. No se pueden ubicar dos equipos del mismo Ruca dentro del mismo grupo. Si coincide, el programa lo pasa automáticamente al siguiente grupo disponible.</p>
             <div class="seccion-contenido">
                 <div>
                     <div class="acciones">
@@ -478,13 +511,13 @@
                         <button id="btn-sortear-principal" class="btn-sortear" onclick="sortearUno('principal')">Sortear siguiente equipo</button>
                         <button id="btn-deshacer-principal" class="btn-deshacer" onclick="deshacerUltimo('principal')">Deshacer último equipo</button>
                     </div>
-                    <div id="mensaje-principal" class="mensaje-seccion">Equipos restantes: 14</div>
+                    <div id="mensaje-principal" class="mensaje-seccion">Equipos restantes: 15</div>
 
                     <div class="grid-container">
-                        <div class="grupo"><h2>Grupo A (4)</h2><ul id="g-A-principal"></ul></div>
-                        <div class="grupo"><h2>Grupo B (4)</h2><ul id="g-B-principal"></ul></div>
-                        <div class="grupo"><h2>Grupo C (3)</h2><ul id="g-C-principal"></ul></div>
-                        <div class="grupo"><h2>Grupo D (3)</h2><ul id="g-D-principal"></ul></div>
+                        <div class="grupo"><h2>Grupo A (4) - Clasifican 2</h2><ul id="g-A-principal"></ul></div>
+                        <div class="grupo"><h2>Grupo B (4) - Clasifican 2</h2><ul id="g-B-principal"></ul></div>
+                        <div class="grupo"><h2>Grupo C (4) - Clasifican 2</h2><ul id="g-C-principal"></ul></div>
+                        <div class="grupo"><h2>Grupo D (3) - Clasifican 2</h2><ul id="g-D-principal"></ul></div>
                     </div>
                 </div>
                 <aside class="pool-panel">
@@ -497,9 +530,9 @@
         <section class="seccion">
             <div class="seccion-titulo">
                 <h2>Sorteo quemados</h2>
-                <p>Segundo tablero independiente</p>
+                <p>13 equipos, 1 zona de 5 y 2 zonas de 4</p>
             </div>
-            <p class="criterio">Criterio: no se pueden ubicar dos equipos del mismo Ruca dentro del mismo grupo. Si coincide, el programa lo pasa automáticamente al siguiente grupo disponible.</p>
+            <p class="criterio">Criterio: en la zona de 5 clasifican los mejores 3 y en las zonas de 4 clasifican los 4 equipos. No se pueden ubicar dos equipos del mismo Ruca dentro del mismo grupo. Si coincide, el programa lo pasa automáticamente al siguiente grupo disponible.</p>
             <div class="seccion-contenido">
                 <div>
                     <div class="acciones">
@@ -507,13 +540,12 @@
                         <button id="btn-sortear-quemados" class="btn-sortear" onclick="sortearUno('quemados')">Sortear siguiente equipo</button>
                         <button id="btn-deshacer-quemados" class="btn-deshacer" onclick="deshacerUltimo('quemados')">Deshacer último equipo</button>
                     </div>
-                    <div id="mensaje-quemados" class="mensaje-seccion">Equipos restantes: 14</div>
+                    <div id="mensaje-quemados" class="mensaje-seccion">Equipos restantes: 13</div>
 
                     <div class="grid-container">
-                        <div class="grupo"><h2>Grupo A (4)</h2><ul id="g-A-quemados"></ul></div>
-                        <div class="grupo"><h2>Grupo B (4)</h2><ul id="g-B-quemados"></ul></div>
-                        <div class="grupo"><h2>Grupo C (3)</h2><ul id="g-C-quemados"></ul></div>
-                        <div class="grupo"><h2>Grupo D (3)</h2><ul id="g-D-quemados"></ul></div>
+                        <div class="grupo"><h2>Grupo A (5) - Clasifican 3</h2><ul id="g-A-quemados"></ul></div>
+                        <div class="grupo"><h2>Grupo B (4) - Clasifican 4</h2><ul id="g-B-quemados"></ul></div>
+                        <div class="grupo"><h2>Grupo C (4) - Clasifican 4</h2><ul id="g-C-quemados"></ul></div>
                     </div>
                 </div>
                 <aside class="pool-panel">
@@ -538,8 +570,8 @@
                     <div id="mensaje-carrera100" class="mensaje-seccion">Equipos restantes: 9</div>
 
                     <div class="grid-container">
-                        <div class="grupo"><h2>Zona 1 (5)</h2><ul id="g-Z1-100"></ul></div>
-                        <div class="grupo"><h2>Zona 2 (4)</h2><ul id="g-Z2-100"></ul></div>
+                        <div class="grupo"><h2>Zona 1 (5) - Clasifican 2</h2><ul id="g-Z1-100"></ul></div>
+                        <div class="grupo"><h2>Zona 2 (4) - Clasifican 2</h2><ul id="g-Z2-100"></ul></div>
                     </div>
                 </div>
                 <aside class="pool-panel">
@@ -564,8 +596,8 @@
                     <div id="mensaje-carrera400" class="mensaje-seccion">Equipos restantes: 9</div>
 
                     <div class="grid-container">
-                        <div class="grupo"><h2>Zona 1 (5)</h2><ul id="g-Z1-400"></ul></div>
-                        <div class="grupo"><h2>Zona 2 (4)</h2><ul id="g-Z2-400"></ul></div>
+                        <div class="grupo"><h2>Zona 1 (5) - Clasifican 2</h2><ul id="g-Z1-400"></ul></div>
+                        <div class="grupo"><h2>Zona 2 (4) - Clasifican 2</h2><ul id="g-Z2-400"></ul></div>
                     </div>
                 </div>
                 <aside class="pool-panel">
@@ -583,41 +615,67 @@
     <script>
         function crearEquipos() {
             return [
-                { nombre: "IVYRAY", ruca: "IVYRAY" }, { nombre: "CURA A", ruca: "CURA" },
-                { nombre: "CHAPELCO A", ruca: "CHAPELCO" }, { nombre: "CARAHUE A", ruca: "CARAHUE" },
-                { nombre: "MAVUL A", ruca: "MAVUL" }, { nombre: "LLAHUE", ruca: "LLAHUE" },
-                { nombre: "CHAMPAQUI", ruca: "CHAMPAQUI" }, { nombre: "MALEN", ruca: "MALEN" },
-                { nombre: "CHOROY", ruca: "CHOROY" }, { nombre: "CHAPELCO", ruca: "CHAPELCO" },
-                { nombre: "CARAHUE", ruca: "CARAHUE" }, { nombre: "LIHUE", ruca: "LIHUE" },
-                { nombre: "CURA", ruca: "CURA" }, { nombre: "MAVUL", ruca: "MAVUL" }
+                { nombre: "LIHUE", ruca: "LIHUE" },
+                { nombre: "CHAPELCO A", ruca: "CHAPELCO" },
+                { nombre: "CHAPELCO B", ruca: "CHAPELCO" },
+                { nombre: "CARAHUE A", ruca: "CARAHUE" },
+                { nombre: "CARAHUE B", ruca: "CARAHUE" },
+                { nombre: "RUCA CURA A", ruca: "RUCA CURA" },
+                { nombre: "RUCA CURA B", ruca: "RUCA CURA" },
+                { nombre: "CHAMPAQUI A", ruca: "CHAMPAQUI" },
+                { nombre: "CHAMPAQUI B", ruca: "CHAMPAQUI" },
+                { nombre: "CHOROY", ruca: "CHOROY" },
+                { nombre: "LLAHUE A", ruca: "LLAHUE" },
+                { nombre: "LLAHUE B", ruca: "LLAHUE" },
+                { nombre: "MAVUL A", ruca: "MAVUL" },
+                { nombre: "MAVUL B", ruca: "MAVUL" },
+                { nombre: "MALEN", ruca: "MALEN" }
+            ].sort(() => Math.random() - 0.5);
+        }
+
+        function crearEquiposQuemados() {
+            return [
+                { nombre: "LIHUE", ruca: "LIHUE" },
+                { nombre: "CHAPELCO A", ruca: "CHAPELCO" },
+                { nombre: "CHAPELCO B", ruca: "CHAPELCO" },
+                { nombre: "CARAHUE A", ruca: "CARAHUE" },
+                { nombre: "CARAHUE B", ruca: "CARAHUE" },
+                { nombre: "RUCA CURA A", ruca: "RUCA CURA" },
+                { nombre: "RUCA CURA B", ruca: "RUCA CURA" },
+                { nombre: "CHAMPAQUI", ruca: "CHAMPAQUI" },
+                { nombre: "CHOROY", ruca: "CHOROY" },
+                { nombre: "LLAHUE A", ruca: "LLAHUE" },
+                { nombre: "LLAHUE B", ruca: "LLAHUE" },
+                { nombre: "MAVUL", ruca: "MAVUL" },
+                { nombre: "MALEN", ruca: "MALEN" }
             ].sort(() => Math.random() - 0.5);
         }
 
         function crearEquiposB100() {
             return [
-                { nombre: "IVYRAY", ruca: "IVYRAY" },
-                { nombre: "CURA", ruca: "CURA" },
+                { nombre: "LIHUE", ruca: "LIHUE" },
                 { nombre: "CHAPELCO", ruca: "CHAPELCO" },
                 { nombre: "CARAHUE", ruca: "CARAHUE" },
-                { nombre: "MAVUL", ruca: "MAVUL" },
-                { nombre: "LLAHUE", ruca: "LLAHUE" },
+                { nombre: "RUCA CURA", ruca: "RUCA CURA" },
                 { nombre: "CHAMPAQUI", ruca: "CHAMPAQUI" },
-                { nombre: "MALEN", ruca: "MALEN" },
-                { nombre: "CHOROY", ruca: "CHOROY" }
+                { nombre: "CHOROY", ruca: "CHOROY" },
+                { nombre: "LLAHUE", ruca: "LLAHUE" },
+                { nombre: "MAVUL", ruca: "MAVUL" },
+                { nombre: "MALEN", ruca: "MALEN" }
             ].sort(() => Math.random() - 0.5);
         }
 
         function crearEquiposB400() {
             return [
-                { nombre: "IVYRAY", ruca: "IVYRAY" },
-                { nombre: "CURA", ruca: "CURA" },
+                { nombre: "LIHUE", ruca: "LIHUE" },
                 { nombre: "CHAPELCO", ruca: "CHAPELCO" },
                 { nombre: "CARAHUE", ruca: "CARAHUE" },
-                { nombre: "MAVUL", ruca: "MAVUL" },
-                { nombre: "LLAHUE", ruca: "LLAHUE" },
+                { nombre: "RUCA CURA", ruca: "RUCA CURA" },
                 { nombre: "CHAMPAQUI", ruca: "CHAMPAQUI" },
-                { nombre: "MALEN", ruca: "MALEN" },
-                { nombre: "CHOROY", ruca: "CHOROY" }
+                { nombre: "CHOROY", ruca: "CHOROY" },
+                { nombre: "LLAHUE", ruca: "LLAHUE" },
+                { nombre: "MAVUL", ruca: "MAVUL" },
+                { nombre: "MALEN", ruca: "MALEN" }
             ].sort(() => Math.random() - 0.5);
         }
 
@@ -627,7 +685,7 @@
                 grupos: [
                     { id: 'g-A-principal', max: 4, ocupantes: [] },
                     { id: 'g-B-principal', max: 4, ocupantes: [] },
-                    { id: 'g-C-principal', max: 3, ocupantes: [] },
+                    { id: 'g-C-principal', max: 4, ocupantes: [] },
                     { id: 'g-D-principal', max: 3, ocupantes: [] }
                 ],
                 historial: [],
@@ -639,18 +697,17 @@
                 poolVacioTexto: 'No quedan equipos'
             },
             quemados: {
-                pool: crearEquipos(),
+                pool: crearEquiposQuemados(),
                 grupos: [
-                    { id: 'g-A-quemados', max: 4, ocupantes: [] },
+                    { id: 'g-A-quemados', max: 5, ocupantes: [] },
                     { id: 'g-B-quemados', max: 4, ocupantes: [] },
-                    { id: 'g-C-quemados', max: 3, ocupantes: [] },
-                    { id: 'g-D-quemados', max: 3, ocupantes: [] }
+                    { id: 'g-C-quemados', max: 4, ocupantes: [] }
                 ],
                 historial: [],
                 mensajeId: 'mensaje-quemados',
                 btnSortearId: 'btn-sortear-quemados',
                 btnDeshacerId: 'btn-deshacer-quemados',
-                icono: '🏐',
+                icono: '🔥',
                 poolListId: 'pool-quemados',
                 poolVacioTexto: 'No quedan equipos'
             },
@@ -690,17 +747,16 @@
                 grupos: [
                     { id: 'g-A-principal', max: 4 },
                     { id: 'g-B-principal', max: 4 },
-                    { id: 'g-C-principal', max: 3 },
+                    { id: 'g-C-principal', max: 4 },
                     { id: 'g-D-principal', max: 3 }
                 ]
             },
             quemados: {
-                crearPool: crearEquipos,
+                crearPool: crearEquiposQuemados,
                 grupos: [
-                    { id: 'g-A-quemados', max: 4 },
+                    { id: 'g-A-quemados', max: 5 },
                     { id: 'g-B-quemados', max: 4 },
-                    { id: 'g-C-quemados', max: 3 },
-                    { id: 'g-D-quemados', max: 3 }
+                    { id: 'g-C-quemados', max: 4 }
                 ]
             },
             carrera100: {

@@ -238,8 +238,8 @@ function renderFixtures(nombreSorteo) {
 
         fecha.forEach((partido, indiceCancha) => {
             const fila = document.createElement('div');
-            fila.className = 'fixture-match';
-            fila.innerHTML = `<span>${partido.local} vs ${partido.visitante}</span><span>Cancha ${indiceCancha + 1} · Zona ${partido.zona}</span>`;
+            fila.className = 'fixture-match cancha-' + (indiceCancha + 1);
+            fila.innerHTML = `<div class="fixture-equipos"><span class="equipo">${partido.local}</span><span class="vs">vs</span><span class="equipo">${partido.visitante}</span></div><span class="fixture-tag">Cancha ${indiceCancha + 1} · Zona ${partido.zona}</span>`;
             tarjeta.appendChild(fila);
         });
 
@@ -325,7 +325,7 @@ function renderLlaves(nombreSorteo) {
         fase.partidos.forEach(partido => {
             const fila = document.createElement('div');
             fila.className = 'fixture-match';
-            fila.innerHTML = `<span>${partido.local} vs ${partido.visitante}</span><span>${partido.etiqueta}</span>`;
+            fila.innerHTML = `<div class="fixture-equipos"><span class="equipo">${partido.local}</span><span class="vs">vs</span><span class="equipo">${partido.visitante}</span></div><span class="fixture-tag">${partido.etiqueta}</span>`;
             tarjeta.appendChild(fila);
         });
 
